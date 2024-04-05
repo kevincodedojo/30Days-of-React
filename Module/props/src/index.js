@@ -1,40 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//------------------------- higher order component
-// const Button = ({ onClick, text, style }) => {
-//   return (
-//     <button onClick={onClick} style={style}>
-//       {text}
-//     </button>
-//   );
-// };
+//---------------inport react router
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   // NavLink,
+//   Switch,
+//   // Redirect,
+//   // Navigate,
+//   // Prompt,
+//   // withRouter,
+// } from "react-router-dom";
 
-// const buttonWithStyle = (CompParam) => {
-//   const buttonStyles = {
-//     backgroundColor: "#61dbfb",
-//     padding: "10px 25px",
-//     border: "none",
-//     borderRadius: 5,
-//     margin: 3,
-//     cursor: "pointer",
-//     fontSize: 18,
-//     color: "white",
-//   };
-//   return (props) => {
-//     return <CompParam {...props} style={buttonStyles} />;
-//   };
-// };
-
-// const NewButton = buttonWithStyle(Button);
+// const Home = (Props) => <h1>Welcome Home</h1>;
+// const About = (props) => <h1>About Us</h1>;
+// const Contact = (props) => <h1>Contact us</h1>;
+// const Services = (props) => <h1>React tutorial</h1>;
 
 // class App extends React.Component {
 //   render() {
 //     return (
-//       <div>
-//         <Button text="No Style" />
-//         <NewButton text="Styled Button" />
-//       </div>
+//       <Router>
+//         <div>
+//           <Switch>
+//             {/* <Route path="/" render={() => <Navigate to="/home" />} /> */}
+//             <Route exact path="/home" component={Home} />
+//             <Route path="/about" component={About} />
+//             <Route path="/contact" component={Contact} />
+//             <Route path="/services" component={Services} />
+//           </Switch>
+//         </div>
+//       </Router>
 //     );
 //   }
 // }
@@ -42,103 +39,287 @@ import ReactDOM from "react-dom";
 // const rootElement = document.getElementById("root");
 // ReactDOM.render(<App />, rootElement);
 
-//------------------------- higher order component with props
+//---------------implement navigation
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   // Switch,
+//   Routes,
+//   NavLink,
+// } from "react-router-dom";
 
-const Button = ({ onClick, text, style }) => {
+// // Home component
+// const Home = (props) => <h1>Welcome Home</h1>;
+// // About component
+// const About = (props) => <h1>About Us</h1>;
+// // Contact component
+// const Contact = (props) => <h1>Contact us</h1>;
+// // Challenge component
+// const Challenges = (props) => (
+//   <div>
+//     <h1>30 Days Of React Challenge</h1>
+//   </div>
+// );
+
+// const NotFound = (props) => <h1>The page your looking for not found</h1>;
+
+// const Navigation = (props) => (
+//   <ul>
+//     <li>
+//       <NavLink to="/">Home</NavLink>
+//     </li>
+//     <li>
+//       <NavLink to="/about">About</NavLink>
+//     </li>
+//     <li>
+//       <NavLink to="/contact">Contact</NavLink>
+//     </li>
+//     <li>
+//       <NavLink to="/challenges">Challenges</NavLink>
+//     </li>
+//   </ul>
+// );
+
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <Router>
+//         <div className="App">
+//           <Navigation />
+//           <Routes>
+//             <Route path="/about" component={About} />
+//             <Route path="/contact" component={Contact} />
+//             <Route path="/challenges" component={Challenges} />
+//             <Route path="/" component={Home} />
+//             <Route path="*" component={NotFound} />
+//           </Routes>
+//         </div>
+//       </Router>
+//     );
+//   }
+// }
+
+// const rootElement = document.getElementById("root");
+// ReactDOM.render(<App />, rootElement);
+
+//---------------Nested Routing
+
+import {
+  BrowserRouter as Router,
+  Route,
+  // Switch,
+  Routes,
+  NavLink,
+} from "react-router-dom";
+
+const Home = (props) => <h1>Welcome Home</h1>;
+// About component
+const About = (props) => <h1>About Us</h1>;
+// Contact component
+const Contact = (props) => <h1>Contact us</h1>;
+// Challenge component
+
+const challenges = [
+  {
+    name: "30 Days Of Python",
+    description:
+      "30 Days of Python challenge is a step by step guide to learn Python in 30 days.",
+    status: "completed",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "20 Nov 2019 - 20 Dec 2019",
+    slug: "pyhton",
+    url: "https://github.com/https://https://github.com/Asabeneh/30-Days-Of-Python.com/Asabeneh/30-Days-Of-JavaScript/30-Days-Of-React",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 Days Of JavaScript",
+    description:
+      "30 Days of JavaScript challenge is a step by step guide to learn JavaScript in 30 days.",
+    status: "completed",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "1 Jan 2020 - 30 Jan 2020",
+    slug: "javascript",
+    url: "https://github.com/Asabeneh/30-Days-Of-JavaScript",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 Days Of React",
+    description:
+      "30 Days of React challenge is a step by step guide to learn React in 30 days.",
+    status: "ongoing",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "1 Oct 2020- 30 Oct 2020",
+    slug: "react",
+    url: "https://github.com/Asabeneh/30-Days-Of-React",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 HTML and CSS",
+    description:
+      "30 Days of HTML and CSS challenge is a step by step guide to learn HTML and CSS in 30 days.",
+
+    status: "coming",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "",
+    slug: "html-and-css",
+    url: "",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 ReactNative",
+    description:
+      "30 Days of ReactNative challenge is a step by step guide to learn ReactNative in 30 days.",
+    status: "coming",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "",
+    slug: "reactnative",
+    url: "",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 Data Analysis",
+    description:
+      "30 Days of Data Analysis challenge  is a step by step guide to learn about data, data visualization and data analysis in 30 days.",
+    status: "coming",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "",
+    slug: "data-analysis",
+    url: "",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+  {
+    name: "30 Machine Learning",
+    description:
+      "30 Days of Machine learning challenge  is a step by step guide to learn data cleaning, machine learning models and predictions in 30 days.",
+    status: "coming",
+    days: 30,
+    level: "Beginners to Advanced",
+    duration: "",
+    slug: "machine-learning",
+    url: "",
+    author: {
+      firstName: "Asabeneh",
+      lastName: "Yetayeh",
+    },
+  },
+];
+
+const Challenge = ({
+  challenge: {
+    name,
+    description,
+    status,
+    days,
+    level,
+    duration,
+    author: { firstName, lastName },
+  },
+}) => (
+  <div>
+    <h1>{name}</h1>
+    <p>{level}</p>
+    <p>
+      Author: {firstName} {lastName}
+    </p>
+    {duration && (
+      <>
+        {" "}
+        <small>{duration}</small> <br />
+      </>
+    )}
+    <small>Number of days: {days}</small>
+
+    <p>{description}</p>
+  </div>
+);
+
+const Challenges = (props) => {
+  const path = props.location.pathname;
+  const slug = path.split("/").slice(path.split("/").length - 1)[0];
+  const challenge = challenges.find((challenge) => challenge.slug === slug);
+
   return (
-    <button onClick={onClick} style={style}>
-      {text}
-    </button>
+    <div>
+      <h1>30 Days Of React Challenge</h1>
+      <ul>
+        {challenges.map(({ name, slug }) => (
+          <li>
+            <NavLink to={`/challenges/${slug}`}>{name}</NavLink>
+          </li>
+        ))}
+      </ul>
+      <Routes>
+        <Route
+          exact
+          path={"/challenges"}
+          component={() => <h1>Choose any of the challenges</h1>}
+        />
+        <Route
+          path={path}
+          component={(props) => <Challenge challenge={challenge} />}
+        />
+      </Routes>
+    </div>
   );
 };
 
-const buttonWithStyles = (CompParam, name = "default") => {
-  const colors = [
-    {
-      name: "default",
-      backgroundColor: "#e7e7e7",
-      color: "#000000",
-    },
-    {
-      name: "react",
-      backgroundColor: "#61dbfb",
-      color: "#ffffff",
-    },
-    {
-      name: "success",
-      backgroundColor: "#4CAF50",
-      color: "#ffffff",
-    },
-    {
-      name: "info",
-      backgroundColor: "#2196F3",
-      color: "#ffffff",
-    },
-    {
-      name: "warning",
-      backgroundColor: "#ff9800",
-      color: "#ffffff",
-    },
-    {
-      name: "danger",
-      backgroundColor: "#f44336",
-      color: "#ffffff",
-    },
-  ];
-
-  const { backgroundColor, color } = colors.find((c) => c.name === name);
-
-  const buttonStyles = {
-    backgroundColor,
-    padding: "10px 45px",
-    border: "none",
-    borderRadius: 3,
-    margin: 3,
-    cursor: "pointer",
-    fontSize: "1.25rem",
-    color,
-  };
-
-  return (props) => {
-    return <CompParam {...props} style={buttonStyles} />;
-  };
-};
-
-const NewButton = buttonWithStyles(Button);
-const ReactButton = buttonWithStyles(Button, "react");
-const InfoButton = buttonWithStyles(Button, "info");
-const SuccessButton = buttonWithStyles(Button, "success");
-const WarningButton = buttonWithStyles(Button, "warning");
-const DangerButton = buttonWithStyles(Button, "danger");
+const NotFound = (props) => <h1>The page your looking for not found</h1>;
+const Navbar = () => (
+  <ul>
+    <li>
+      <NavLink to="/">Home</NavLink>
+    </li>
+    <li>
+      <NavLink to="/about">About</NavLink>
+    </li>
+    <li>
+      <NavLink to="/contact">Contact</NavLink>
+    </li>
+    <li>
+      <NavLink to="/challenges">Challenges</NavLink>
+    </li>
+  </ul>
+);
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <Button text="No Style" onClick={() => alert("I am not styled yet")} />
-
-        <NewButton
-          text="Styled Button"
-          onClick={() => alert("I am the default style")}
-        />
-        <ReactButton text="React" onClick={() => alert("I have react color")} />
-        <InfoButton
-          text="Info"
-          onClick={() => alert("I am styled with info color")}
-        />
-        <SuccessButton
-          text="Success"
-          onClick={() => alert("I am successful")}
-        />
-        <WarningButton
-          text="Warning"
-          onClick={() => alert("I warn you many times")}
-        />
-        <DangerButton
-          text="Danger"
-          onClick={() => alert("Oh no, you can not restore it")}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/challenges" component={Challenges} />
+            <Route exact path="/" component={Home} />
+            <Route component={NotFound} />
+          </Routes>
+        </div>
+      </Router>
     );
   }
 }
