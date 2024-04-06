@@ -90,30 +90,38 @@ import ReactDOM from "react-dom";
 const Country = ({
   country: { name, capital, flags, languages, population, currencies },
 }) => {
-  // const formatedCapital = capital ? (
-  //   <>
-  //     <span>Capital: </span>
-  //     {capital}
-  //   </>
-  // ) : (
-  //   ""
-  // );
-  // const languageList = Object.values(languages).join(", ");
-  // const formatLanguage =
-  //   Object.keys(languages).length > 1 ? `Languages` : `Language`;
-  // console.log(languages);
+  const formatedCapital = capital ? (
+    <>
+      <span>Capital: </span>
+      {capital}
+    </>
+  ) : (
+    ""
+  );
+  const languageList = languages
+    ? Object.values(languages).join(", ")
+    : "No data";
+  const formatLanguage =
+    languages && Object.keys(languages).length > 1 ? `Languages` : `Language`;
+
+  const currencyCode = currencies ? Object.keys(currencies)[0] : "No data";
+  const currencyName = currencies ? currencies[currencyCode].name : "No data";
+  const currencySymbol = currencies
+    ? currencies[currencyCode].symbol
+    : "No data";
+
   return (
     <div className="country">
       <div className="country_flag">
         <img src={flags.png} alt={`Flag of ${name}`} />
       </div>
-      <h3 className="country_name">{name.common?.toUpperCase()}</h3>
+      <h3 className="country_name">{name.common.toUpperCase()}</h3>
       <div class="country_text">
-        {/* <p>{formatedCapital}</p> */}
+        <p>{formatedCapital}</p>
+        <p>{capital}</p>
         <p>
-          {/* <span>{formatLanguage}: </span> */}
-          {/* {languages.map((language) => language.name).join(", ")} */}
-          {/* {languageList} */}
+          <span>{formatLanguage}: </span>
+          {languageList}
         </p>
         <p>
           <span>Population: </span>
@@ -121,7 +129,7 @@ const Country = ({
         </p>
         <p>
           <span>Currency: </span>
-          {/* {Object.values(currencies)[0].name} */}
+          {currencyName} ({currencyCode}), Symbol {currencySymbol}
         </p>
       </div>
     </div>
@@ -166,5 +174,3 @@ class App extends React.Component {
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
-
-// "name":{"common":"Cyprus","official":"Republic of Cyprus","nativeName":{"ell":{"official":"Δημοκρατία της Κύπρος","common":"Κύπρος"},"tur":{"official":"Kıbrıs Cumhuriyeti","common":"Kıbrıs"}}},
