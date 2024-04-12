@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//----------------------------------------------fetching data using hooks
+//----------------------------------------------Custom hooks
 import { useState, useEffect } from "react";
 import axios from "axios";
+import useFetch from "./useFetch";
 
 const Country = ({
   country: { name, capital, flags, languages, population, currencies },
@@ -55,24 +56,12 @@ const Country = ({
 };
 
 const App = () => {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const url = "https://restcountries.com/v3.1/all";
+  const data = useFetch(url);
 
-  const fetchData = async () => {
-    const url = "https://restcountries.com/v3.1/all";
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   return (
     <div className="App">
-      <h1>React Component Life Cycle</h1>
+      <h1>Custom Hooks</h1>
       <h1>Calling API</h1>
       <div>
         <p>There are {data.length} countries in the api</p>
